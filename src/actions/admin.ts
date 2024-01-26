@@ -9,11 +9,11 @@ export async function admin() {
 
   if (role === UserRole.ADMIN) {
     return {
-      success: "Allowed!",
+      success: "Granted!",
     }
   }
 
   return {
-    error: "Forbidden!",
+    error: "Deny!",
   }
 }

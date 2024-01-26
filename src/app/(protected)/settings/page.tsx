@@ -7,6 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { UserRole } from "@prisma/client"
 import { useSession } from "next-auth/react"
 import { useForm } from "react-hook-form"
+import { toast } from "sonner"
 import * as z from "zod"
 
 import useCurrentUser from "@/hooks/use-current-user"
@@ -30,14 +31,9 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
-import FormError from "@/components/form-error"
-import FormSuccess from "@/components/form-success"
 
 export default function SettingsPage() {
   const user = useCurrentUser()
-
-  const [error, setError] = useState<string | undefined>()
-  const [success, setSuccess] = useState<string | undefined>()
   const { update } = useSession()
   const [isPending, startTransition] = useTransition()
 
@@ -59,27 +55,44 @@ export default function SettingsPage() {
       settings(values)
         .then((data) => {
           if (data && data.error) {
-            setError(data.error)
+            toast.error(data.error, {
+              action: {
+                label: "Close",
+                onClick: () => {},
+              },
+            })
           }
 
           if (data && data.success) {
             update()
-            setSuccess(data.success)
+            toast.success(data.success, {
+              action: {
+                label: "Close",
+                onClick: () => {},
+              },
+            })
           }
         })
-        .catch(() => setError("Something went wrong!"))
+        .catch(() =>
+          toast.error("Something went wrong!", {
+            action: {
+              label: "Close",
+              onClick: () => {},
+            },
+          })
+        )
     })
   }
 
   return (
-    <Card className="w-[600px]">
+    <Card className="w-[600px] border-foreground">
       <CardHeader>
         <p className="text-center text-2xl font-semibold">⚙️ Settings</p>
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="space-y-4">
+          <form className="space-y-6 " onSubmit={form.handleSubmit(onSubmit)}>
+            <div className="space-y-4 rounded-lg border border-foreground p-6">
               <FormField
                 control={form.control}
                 name="image"
@@ -202,7 +215,7 @@ export default function SettingsPage() {
                   control={form.control}
                   name="isTwoFactorEnabled"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-3 shadow-sm">
+                    <FormItem className="flex flex-row items-center justify-between rounded-lg border border-foreground p-3 shadow-sm">
                       <div className="space-y-0.5">
                         <FormLabel>Two Factor Authentication</FormLabel>
                         <FormDescription>
@@ -211,6 +224,7 @@ export default function SettingsPage() {
                       </div>
                       <FormControl>
                         <Switch
+                          className=""
                           disabled={isPending}
                           checked={field.value}
                           onCheckedChange={field.onChange}
@@ -221,8 +235,6 @@ export default function SettingsPage() {
                 />
               )}
             </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
             <Button disabled={isPending} type="submit">
               Save
             </Button>

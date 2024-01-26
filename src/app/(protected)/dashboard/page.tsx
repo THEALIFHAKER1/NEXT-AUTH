@@ -12,7 +12,7 @@ import { ModeToggle } from "@/components/mode-toggle"
 
 export default function DashboardPage() {
   return (
-    <Card className="w-[600px]">
+    <Card className="w-[600px] border-foreground">
       <CardHeader>
         <p className="text-center text-2xl font-semibold">〰️ Dashboard</p>
       </CardHeader>

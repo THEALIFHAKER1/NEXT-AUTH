@@ -28,15 +28,15 @@ export default function UserButton() {
           <AvatarImage src={user?.image || ""} />
         </Avatar>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-40" align="end">
+      <DropdownMenuContent className="border-foreground p-2" align="end">
         <LogoutButton>
-          <DropdownMenuItem>
+          <DropdownMenuItem className="mb-2 cursor-pointer bg-foreground text-background">
             <IoIosLogOut className="mr-2 w-4" />
             Logout
           </DropdownMenuItem>
         </LogoutButton>
         <Link href="/settings">
-          <DropdownMenuItem>
+          <DropdownMenuItem className="cursor-pointer bg-foreground text-background">
             <IoSettingsOutline className="mr-2 w-4" />
             Settings
           </DropdownMenuItem>
