@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "pnpm prettier ./src --write",
-    "format:check": "pnpm prettier ./src --check",
+    "format": "yarn prettier ./src --write",
+    "format:check": "yarn prettier ./src --check",
     "postinstall": "prisma generate"
   },
   "dependencies": {
