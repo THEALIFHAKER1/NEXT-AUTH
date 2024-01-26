@@ -1,4 +1,4 @@
-![Untitled (5)-1](https://github.com/THEALIFHAKER1/NEXT-AUTH/assets/56091627/5a5765e8-d9c8-4f5f-9775-785fdbd9448d)
+![Untitled (6)-1](https://github.com/THEALIFHAKER1/NEXT-AUTH/assets/56091627/04aebd9f-1464-4fe1-a233-e99d3240546d)
 
 # NEXT AUTH
 
