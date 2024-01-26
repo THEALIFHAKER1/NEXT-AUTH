@@ -3,23 +3,23 @@
 import { useRouter } from "next/navigation"
 
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
-import LoginForm from "@/app/(auth)/login/login-form"
+import RegisterForm from "@/app/(auth)/register/register-form"
 
-interface LoginButtonProps {
+interface RegisterButtonProps {
   children: React.ReactNode
   mode?: "modal" | "redirect"
   asChild?: boolean
 }
 
-export default function LoginButton({
+export default function RegisterButton({
   children,
   mode = "redirect",
   asChild,
-}: LoginButtonProps) {
+}: RegisterButtonProps) {
   const Router = useRouter()
 
-  function handleLogin() {
-    Router.push("/login")
+  function handleRegister() {
+    Router.push("/register")
   }
 
   if (mode === "modal") {
@@ -27,13 +27,13 @@ export default function LoginButton({
       <Dialog>
         <DialogTrigger asChild={asChild}>{children}</DialogTrigger>
         <DialogContent className="w-auto bg-transparent p-0">
-          <LoginForm />
+          <RegisterForm />
         </DialogContent>
       </Dialog>
     )
   }
   return (
-    <span onClick={handleLogin} className="cursor-pointer">
+    <span onClick={handleRegister} className="cursor-pointer">
       {children}
     </span>
   )

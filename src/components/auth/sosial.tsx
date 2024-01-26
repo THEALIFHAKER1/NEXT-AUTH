@@ -1,5 +1,6 @@
 "use client"
 
+import { useSearchParams } from "next/navigation"
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes"
 import { signIn } from "next-auth/react"
 import { FaGithub } from "react-icons/fa"
@@ -8,8 +9,10 @@ import { FcGoogle } from "react-icons/fc"
 import { Button } from "@/components/ui/button"
 
 export default function Sosial() {
+  const searchParams = useSearchParams()
+  const callbackUrl = searchParams.get("callbackUrl")
   function clickHandler(provider: "google" | "github") {
-    signIn(provider, { callbackUrl: DEFAULT_LOGIN_REDIRECT })
+    signIn(provider, { callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT })
   }
 
   return (

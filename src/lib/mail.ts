@@ -2,10 +2,12 @@ import React from "react"
 import { Resend } from "resend"
 
 const resend = new Resend(process.env.RESENT_API_KEY)
+const domain = process.env.NEXT_PUBLIC_APP_URL
+const emailDomain = process.env.NEXT_PUBLIC_EMAIL_DOMAIN
 
 export async function sendTwoFactorTokenEmail(email: string, token: string) {
   await resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: `${emailDomain}`,
     to: email,
     subject: "2FA Code",
     html: `
@@ -18,10 +20,10 @@ export async function sendTwoFactorTokenEmail(email: string, token: string) {
 }
 
 export async function sentPasswordResetEmail(email: string, token: string) {
-  const resetLink = `${process.env.NEXT_PUBLIC_APP_URL}/password?token=${token}`
+  const resetLink = `${domain}/password?token=${token}`
 
   await resend.emails.send({
-    from: "onboarding@resend.dev",
+    from: `${emailDomain}`,
     to: email,
     subject: "Reset your password",
     html: `
@@ -34,7 +36,7 @@ export async function sentPasswordResetEmail(email: string, token: string) {
 }
 
 export async function sendVerificationEmail(email: string, token: string) {
-  const comfirmLink = `${process.env.NEXT_PUBLIC_APP_URL}/verification?token=${token}`
+  const comfirmLink = `${domain}/verification?token=${token}`
 
   await resend.emails.send({
     from: "onboarding@resend.dev",
