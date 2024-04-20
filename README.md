@@ -33,6 +33,7 @@ cp .env.example .env
 ## Features
 
 Key Features:
+:heart:
 - 🔐 Next-auth v5 (Auth.js)
 - 🚀 Next.js 14 with server actions
 - 🔑 Credentials Provider
