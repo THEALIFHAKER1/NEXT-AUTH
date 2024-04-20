@@ -32,7 +32,8 @@ cp .env.example .env
 
 ## Features
 
-Key Features: -  Next-auth v5 (Auth.js)
+Key Features: 
+-  Next-auth v5 (Auth.js)
 -  Next.js 14 with server actions
 -  Credentials Provider
 -  OAuth Provider (Social login with Google & GitHub)
